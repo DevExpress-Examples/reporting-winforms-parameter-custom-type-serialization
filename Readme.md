@@ -1,18 +1,27 @@
-<!-- default badges list -->
-![](https://img.shields.io/endpoint?url=https://codecentral.devexpress.com/api/v1/VersionRange/128603236/13.1.4%2B)
-[![](https://img.shields.io/badge/Open_in_DevExpress_Support_Center-FF7200?style=flat-square&logo=DevExpress&logoColor=white)](https://supportcenter.devexpress.com/ticket/details/E3186)
-[![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
-<!-- default badges end -->
-<!-- default file list -->
-*Files to look at*:
-
-* **[Form1.cs](./CS/Form1.cs) (VB: [Form1.vb](./VB/Form1.vb))**
-<!-- default file list end -->
-# How to serialize parameters of custom types
+# Reporting for WinForms - How to Serialize Custom Type Parameters
 
 
-<p>This example demonstrates the capability to provide XML serialization of custom parameter types.</p><p>In particular, it shows how you can save a report, along with its parameters of the <strong>System.Enum</strong> type, to XML file.</p><p>To do this, override the <strong>ReportStorageExtension</strong> class, and register a custom <strong>ReportDesignExtension</strong>, which implements the data source serialization functionality.</p><p>To serialize custom objects and properties, specify the <strong>XtraSerializ</strong><strong>ableProperty</strong> attribute with the <strong>XtraSerializationVisibility.Reference</strong> parameter (this parameter defines whether or not an object should be serialized by a reference).</p>
+This example shows how to enable a report parameter of a custom [System.Enum](https://learn.microsoft.com/en-us/dotnet/api/system.enum) type and serialize that parameter so that it can be stored in the report layout file (REPX).
 
-<br/>
+The code does the following:
 
+1. Creates a custom class inherited from the [ReportDesignExtension](https://docs.devexpress.com/XtraReports/DevExpress.XtraReports.Extensions.ReportDesignExtension) class.
+2. Overrides the [ReportDesignExtension.AddParameterTypes](https://docs.devexpress.com/XtraReports/DevExpress.XtraReports.Extensions.ReportDesignExtension.AddParameterTypes(System.Collections.Generic.IDictionary-System.Type-System.String-)) method to register a custom parameter type.
+3. Registers a custom extension using the [ReportDesignExtension.RegisterExtension](https://docs.devexpress.com/XtraReports/DevExpress.XtraReports.Extensions.ReportDesignExtension.RegisterExtension(DevExpress.XtraReports.Extensions.ReportDesignExtension-System.String)) method.
+4. Assigns the report to the created extension using the [ReportDesignExtension.AssociateReportWithExtension](https://docs.devexpress.com/XtraReports/DevExpress.XtraReports.Extensions.ReportDesignExtension.AssociateReportWithExtension(DevExpress.XtraReports.UI.XtraReport-System.String)) method.
 
+![Custom Type Parameter](Images/screenshot.png)
+
+## Files to Review
+
+- [Form1.cs](./CS/Form1.cs) (VB: [Form1.vb](./VB/Form1.vb))
+- [DataObjects.cs](./CS/DataObjects.cs) (VB: [DataObjects.vb](./VB/DataObjects.vb))
+
+## Documentation
+
+- [Use Report Parameters](https://docs.devexpress.com/XtraReports/4812/detailed-guide-to-devexpress-reporting/use-report-parameters)
+
+## More Examples
+
+- [Custom Report Parameter Types in Web Reporting Controls (ASP.NET Core)](https://github.com/DevExpress-Examples/Reporting-Custom-Parameter-Editor-AspNet-Core)
+- [How to use custom report parameter types in web reporting controls](https://github.com/DevExpress-Examples/Reporting-Custom-Parameter-Editor-Mvc)

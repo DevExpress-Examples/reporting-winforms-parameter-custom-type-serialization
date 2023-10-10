@@ -27,6 +27,11 @@ namespace AdvancedSupportForEnums {
             report.DataSource = dataSource;
 
             ReportDesignExtension.AssociateReportWithExtension(report, TeamParameterName);
+
+            report.Parameters.Add(new DevExpress.XtraReports.Parameters.Parameter() {
+                Name = "pTitle",
+                Type = typeof(Title)
+            });
         }
 
         private void FillDataSource() {
@@ -42,37 +47,37 @@ namespace AdvancedSupportForEnums {
                     FirstName = "Name 1, team1",
                     Team = team1,
                     DateOfBirth = DateTime.Now.AddYears(-1),
-                    Gender = PersonGender.Mr
+                    PersonTitle = Title.Mr
                 }.Save();
                 new Person() {
                     FirstName = "Name 1, team2",
                     Team = team2,
                     DateOfBirth = DateTime.Now,
-                    Gender = PersonGender.Mrs
+                    PersonTitle = Title.Mrs
                 }.Save();
                 new Person() {
                     FirstName = "Name 1, team3",
                     Team = team3,
                     DateOfBirth = DateTime.Now,
-                    Gender = PersonGender.Mrs
+                    PersonTitle = Title.Mrs
                 }.Save();
                 new Person() {
                     FirstName = "Name 2, team1",
                     Team = team1,
                     DateOfBirth = DateTime.Now.AddYears(-1),
-                    Gender = PersonGender.Mr
+                    PersonTitle = Title.Mr
                 }.Save();
                 new Person() {
                     FirstName = "Name 2, team2",
                     Team = team2,
                     DateOfBirth = DateTime.Now,
-                    Gender = PersonGender.Mrs
+                    PersonTitle = Title.Mrs
                 }.Save();
                 new Person() {
                     FirstName = "Name 2, team3",
                     Team = team3,
                     DateOfBirth = DateTime.Now,
-                    Gender = PersonGender.Mrs
+                    PersonTitle = Title.Mrs
                 }.Save();
             }
         }
@@ -86,20 +91,20 @@ namespace AdvancedSupportForEnums {
             }
 
             public override void AddParameterTypes(IDictionary<Type, string> dictionary) {
-                dictionary.Add(typeof(PersonGender), "Person's Gender");
+                dictionary.Add(typeof(Title), "Person's Title");
             }
 
             protected override bool CanSerialize(object data) {
-                return data is PersonGender;
+                return data is Title;
             }
             protected override string SerializeData(object data, XtraReport report) {
-                return Enum.GetName(typeof(PersonGender), data);
+                return Enum.GetName(typeof(Title), data);
             }
             protected override bool CanDeserialize(string value, string typeName) {
-                return typeof(PersonGender).FullName == typeName;
+                return typeof(Title).FullName == typeName;
             }
             protected override object DeserializeData(string value, string typeName, XtraReport report) {
-                return Enum.Parse(typeof(PersonGender), value);
+                return Enum.Parse(typeof(Title), value);
             }
         }
 

@@ -3,19 +3,21 @@ Imports System
 Imports DevExpress.Xpo
 
 Namespace AdvancedSupportForEnums
-	Public Enum PersonGender
+	Public Enum Title
 		Mr
 		Mrs
+		Miss
+		Mx
 	End Enum
 
 	Public Class Person
 		Inherits XPObject
-		Private privateGender As PersonGender
-		Public Property Gender() As PersonGender
+		Private privateGender As Title
+		Public Property Gender() As Title
 			Get
 				Return privateGender
 			End Get
-			Set(ByVal value As PersonGender)
+			Set(ByVal value As Title)
 				privateGender = value
 			End Set
 		End Property

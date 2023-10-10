@@ -2,10 +2,10 @@
 using DevExpress.Xpo;
 
 namespace AdvancedSupportForEnums {
-    public enum PersonGender { Mr, Mrs }
+    public enum Title { Mr, Mrs, Miss, Mx }
 
     public class Person : XPObject {
-        public PersonGender Gender { get; set; }
+        public Title PersonTitle { get; set; }
         public DateTime DateOfBirth { get; set; }
         public Person Owner { get; set; }
         public string FirstName { get; set; }

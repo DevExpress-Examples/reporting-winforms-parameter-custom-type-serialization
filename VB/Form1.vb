@@ -29,6 +29,10 @@ Namespace AdvancedSupportForEnums
 			report.DataSource = dataSource
 
 			ReportDesignExtension.AssociateReportWithExtension(report, TeamParameterName)
+			report.Parameters.Add(New DevExpress.XtraReports.Parameters.Parameter() With {
+				.Name = "pTitle",
+				.Type = GetType(Title)
+			})
 		End Sub
 
 		Private Sub FillDataSource()
@@ -41,53 +45,53 @@ Namespace AdvancedSupportForEnums
 				Dim team3 As New Team() With {.Name = "Team 3"}
 				team3.Save()
 
-                Dim TempPerson As Person = New Person() With {
-                    .FirstName = "Name 1, team1",
-                    .Team = team1,
-                    .DateOfBirth = DateTime.Now.AddYears(-1),
-                    .Gender = PersonGender.Mr
-                }
-                TempPerson.Save()
+				Dim TempPerson As Person = New Person() With {
+					.FirstName = "Name 1, team1",
+					.Team = team1,
+					.DateOfBirth = DateTime.Now.AddYears(-1),
+					.Gender = Title.Mr
+				}
+				TempPerson.Save()
 
-                TempPerson = New Person() With {
-                    .FirstName = "Name 1, team2",
-                    .Team = team2,
-                    .DateOfBirth = DateTime.Now,
-                    .Gender = PersonGender.Mrs
-                }
-                TempPerson.Save()
+				TempPerson = New Person() With {
+					.FirstName = "Name 1, team2",
+					.Team = team2,
+					.DateOfBirth = DateTime.Now,
+					.Gender = Title.Mrs
+				}
+				TempPerson.Save()
 
-                TempPerson = New Person() With {
-                    .FirstName = "Name 1, team3",
-                    .Team = team3,
-                    .DateOfBirth = DateTime.Now,
-                    .Gender = PersonGender.Mrs
-                }
-                TempPerson.Save()
+				TempPerson = New Person() With {
+					.FirstName = "Name 1, team3",
+					.Team = team3,
+					.DateOfBirth = DateTime.Now,
+					.Gender = Title.Mrs
+				}
+				TempPerson.Save()
 
-                TempPerson = New Person() With {
-                    .FirstName = "Name 2, team1",
-                    .Team = team1,
-                    .DateOfBirth = DateTime.Now.AddYears(-1),
-                    .Gender = PersonGender.Mr
-                }
-                TempPerson.Save()
+				TempPerson = New Person() With {
+					.FirstName = "Name 2, team1",
+					.Team = team1,
+					.DateOfBirth = DateTime.Now.AddYears(-1),
+					.Gender = Title.Mr
+				}
+				TempPerson.Save()
 
-                TempPerson = New Person() With {
-                    .FirstName = "Name 2, team2",
-                    .Team = team2,
-                    .DateOfBirth = DateTime.Now,
-                    .Gender = PersonGender.Mrs
-                }
-                TempPerson.Save()
+				TempPerson = New Person() With {
+					.FirstName = "Name 2, team2",
+					.Team = team2,
+					.DateOfBirth = DateTime.Now,
+					.Gender = Title.Mrs
+				}
+				TempPerson.Save()
 
-                TempPerson = New Person() With {
-                    .FirstName = "Name 2, team3",
-                    .Team = team3,
-                    .DateOfBirth = DateTime.Now,
-                    .Gender = PersonGender.Mrs
-                }
-                TempPerson.Save()
+				TempPerson = New Person() With {
+					.FirstName = "Name 2, team3",
+					.Team = team3,
+					.DateOfBirth = DateTime.Now,
+					.Gender = Title.Mrs
+				}
+				TempPerson.Save()
 			End If
 		End Sub
 
@@ -101,20 +105,20 @@ Namespace AdvancedSupportForEnums
 			End Sub
 
 			Public Overrides Sub AddParameterTypes(ByVal dictionary As IDictionary(Of Type, String))
-				dictionary.Add(GetType(PersonGender), "Person's Gender")
+				dictionary.Add(GetType(Title), "Person's Title")
 			End Sub
 
 			Protected Overrides Function CanSerialize(ByVal data As Object) As Boolean
-				Return TypeOf data Is PersonGender
+				Return TypeOf data Is Title
 			End Function
 			Protected Overrides Function SerializeData(ByVal data As Object, ByVal report As XtraReport) As String
-				Return System.Enum.GetName(GetType(PersonGender), data)
+				Return System.Enum.GetName(GetType(Title), data)
 			End Function
 			Protected Overrides Function CanDeserialize(ByVal value As String, ByVal typeName As String) As Boolean
-				Return GetType(PersonGender).FullName = typeName
+				Return GetType(Title).FullName = typeName
 			End Function
 			Protected Overrides Function DeserializeData(ByVal value As String, ByVal typeName As String, ByVal report As XtraReport) As Object
-				Return System.Enum.Parse(GetType(PersonGender), value)
+				Return System.Enum.Parse(GetType(Title), value)
 			End Function
 		End Class
 
